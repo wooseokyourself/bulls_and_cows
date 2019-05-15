@@ -5,16 +5,27 @@ void Manager::Menu()
     int choice;
 
     while(1){
-        cout<<"1. Game Start"<<endl;
-        cout<<"2. Program exit"<<endl;
+        cout<<" >> 1. Game Start"<<endl;
+        cout<<" >> 2. Program exit"<<endl;
         cout<<" >> ";
         cin >> choice;
 
         if(choice == 1){
+            int diff;
+            while(true){
+                cout<<" >> Choice difficulty (easy: 1 / normal: 2 / hard: 3)"<<endl;
+                cout<<" >> "; cin >> diff;
+                if(diff!=1 && diff!=2 && diff!=3){
+                    cout<<" >> Invalid Difficulty. Choice again."<<endl;
+                }
+                else break;
+            }
+            Difficulty = diff + 2;
             Play();
             GameCount++;
         }
         else if(choice == 2){
+            cout<<" >> Program exit."<<endl;
             break;
         }
         else{
@@ -26,7 +37,10 @@ void Manager::Menu()
 
 void Manager::Play()
 {
-    Referee referee;
-    referee.Set_Start();
-    
+    if(Game.Start(Difficulty)){
+        cout<<" >> You won!"<<endl;
+    }
+    else{
+        cout<<" >> You lose!"<<endl;
+    }
 }

@@ -5,6 +5,7 @@
 #include <vector>
 #include <ctime>
 #include <cstdlib>
+#include <string>
 
 using namespace std;
 
@@ -15,9 +16,9 @@ enum{
 
     STRIKE = 10,
     BALL = 11,
-    OUT = 12
+    OUT = 12,
 
-    MAX_GAME_SET = 9;
+    MAX_GAME_SET = 9
 };
 
 #endif

@@ -10,8 +10,8 @@ public:
     void Menu();
 
 protected:
-    void Play();
-    void SetDifficulty();
+    void Play(); // Play the game
+    void SetDifficulty(); // 
 
 private:
     int GameCount;

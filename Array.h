@@ -7,7 +7,8 @@ class PresentInfo
 {
 public:
     PresentInfo(int strike, int ball);
-    bool isBall() const;
+    PresentInfo(PresentInfo& cpy);
+    bool isOut() const;
     int Strike() const;
     int Ball() const;
 private:
@@ -17,15 +18,19 @@ private:
      idx 1 <- elem : number of strike
      idx 2 <- elem : number of ball
     */
-}
+};
 
 class Array
 {
 public:
-    Array(int difficulty);
+    Array(int Difficulty);
     ~Array();
-    int& operator[](const int idx);
-    PresentInfo Check(const vector<int>& Present) const;
+    int& operator[](int idx);
+    PresentInfo* Check(Array& Present) const;
+    bool SetArray(string& Numbers);
+    void clear();
+
+protected:
     virtual bool push_back(int elem);
 
 protected:
@@ -41,7 +46,7 @@ protected:
 class Answer : public Array
 {
 public:
-    Answer(int difficulty);
+    Answer(int Difficulty);
 protected:
     void SetRandomNumber();
     virtual bool push_back(int randomNum); // 랜덤넘버 중복삽입을 막기 위한 유틸리티함수
