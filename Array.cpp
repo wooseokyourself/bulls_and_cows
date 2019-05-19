@@ -146,6 +146,7 @@ Answer::Answer(int Difficulty) : Array(Difficulty)
         cout<<" >> HARD MODE"<<endl;
     }
     else{
+        cout<<"Difficulty : "<<Difficulty<<endl;
         cout<<"SYSTEM : Invalid Difficulty. Program exit."<<endl;
         exit(1);
     }

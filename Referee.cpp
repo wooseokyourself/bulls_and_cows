@@ -9,15 +9,11 @@ Referee::~Referee()
     if(Answer_array != nullptr){
         delete Answer_array;
     }
-    if(Return_value != nullptr){
-        delete Return_value;
-    }
 }
 
-bool Referee::PLAY_Solo(int Difficulty)
+bool Referee::PLAY_Solo()
 {
     SetCount = 0;
-    SetDifficulty(Difficulty);      // Set the Answer array. (dynamic allocated)
     Array Guess_array(Difficulty);  // User's array. 
     bool result_flag = false;       // win <- true, lose <- false
 
@@ -71,10 +67,9 @@ bool Referee::PLAY_Solo(int Difficulty)
     return result_flag;
 }
 
-bool Referee::PLAY_PVP(int difficulty)
+bool Referee::PLAY_PVP()
 {
     SetCount = 0;
-    SetDifficulty(Difficulty);      // Set the Answer array.
     Array Guess_array(Difficulty);  // User's array.
     bool result_flag = false;       // win <- true, lose <- false
 
@@ -84,10 +79,9 @@ bool Referee::PLAY_PVP(int difficulty)
     return result_flag;
 }
 
-bool Referee::PLAY_Computer(int difficulty)
+bool Referee::PLAY_Computer()
 {
     SetCount = 0;
-    SetDifficulty(Difficulty);      // Set the Answer array.
     Array Guess_array(Difficulty);  // User's array.
     bool result_flag = false;       // win <- true, lose <- false
 
@@ -97,12 +91,12 @@ bool Referee::PLAY_Computer(int difficulty)
     return result_flag;
 }
 
-void Referee::SetDifficulty(int difficulty)
+void Referee::MakeAnswerArray(int _difficulty)
 {
     if(Answer_array != nullptr){ // delete previous Answer_array
         delete Answer_array;
     }
-    Difficulty = difficulty;
+    Difficulty = _difficulty;
     Answer_array = new Answer(Difficulty);
 }
 

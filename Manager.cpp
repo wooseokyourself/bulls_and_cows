@@ -36,8 +36,9 @@ void Manager::Menu()
 
 void Manager::Play(int GameMode)
 {
+    Game.MakeAnswerArray(Difficulty);
     if(GameMode == 1){
-        if(Game.PLAY_Solo(Difficulty)){
+        if(Game.PLAY_Solo()){
             cout<<" >> You won!"<<endl;
         }
         else{
@@ -45,7 +46,7 @@ void Manager::Play(int GameMode)
         }
     }
     else if(GameMode == 2){
-        if(Game.PLAY_PVP(Difficulty)){
+        if(Game.PLAY_PVP()){
             cout<<" >> Player 1 won!"<<endl;
         }
         else{
@@ -53,7 +54,7 @@ void Manager::Play(int GameMode)
         }
     }
     else if(GameMode == 3){
-        if(Game.PLAY_Computer(Difficulty)){
+        if(Game.PLAY_Computer()){
             cout<<" >> You won!"<<endl;
         }
         else{
@@ -87,6 +88,7 @@ void Manager::Menu_SelectModeAndPlay()
 
 void Manager::Menu_SelectDifficulty()
 {
+    Difficulty = 0;
     int diff;
     while(true){
         cout<<" >> Select difficulty (easy: 1 / normal: 2 / hard: 3)"<<endl;
@@ -96,7 +98,7 @@ void Manager::Menu_SelectDifficulty()
             cin.clear();
             cin.ignore(256, '\n');
         }
-        
+
         if(diff!=1 && diff!=2 && diff!=3){
             cout<<" >> Invalid Difficulty. Input again."<<endl;
         }

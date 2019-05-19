@@ -9,13 +9,13 @@ class Referee
 public:
     Referee();
     ~Referee();
-    bool PLAY_Solo(int difficulty);
+    bool PLAY_Solo();
     // Play game until user win or set==9
     // win <- true, lose <- false
-    bool PLAY_PVP(int difficulty);
-    bool PLAY_Computer(int difficulty);
+    bool PLAY_PVP();
+    bool PLAY_Computer();
+    void MakeAnswerArray(int _difficulty);
 protected:
-    void SetDifficulty(int difficulty);
     void ViewHelp() const;
 private:
     int Difficulty;
