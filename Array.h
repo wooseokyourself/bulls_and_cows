@@ -26,7 +26,7 @@ public:
     Array(int Difficulty);
     ~Array();
     int& operator[](int idx);
-    PresentInfo* Check(Array& Present) const;
+    PresentInfo* Check(Array& Present);
     bool SetArray(string& Numbers);
     void clear();
 
@@ -41,6 +41,9 @@ protected:
      4 <- NORMAL
      5 <- HARD
     */
+
+private:
+    PresentInfo* Info; // will be dynamic allocated
 };
 
 class Answer : public Array
@@ -49,7 +52,7 @@ public:
     Answer(int Difficulty);
 protected:
     void SetRandomNumber();
-    virtual bool push_back(int randomNum); // 랜덤넘버 중복삽입을 막기 위한 유틸리티함수
+    virtual bool push_back(int randomNum); // for not inserting overlapped value of the random numbers
 };
 
 #endif

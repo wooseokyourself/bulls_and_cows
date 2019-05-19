@@ -10,8 +10,9 @@ public:
     void Menu();
 
 protected:
-    void Play(); // Play the game
-    void SetDifficulty(); // 
+    void Play(int GameMode); // Play the game
+    void Menu_SelectModeAndPlay();
+    void Menu_SelectDifficulty();
 
 private:
     int GameCount;

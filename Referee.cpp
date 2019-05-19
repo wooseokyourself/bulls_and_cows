@@ -1,33 +1,35 @@
 #include "Referee.h"
 
-Referee::Referee() : Difficulty(0), SetCount(0), Return_value(nullptr)
+Referee::Referee() : Difficulty(0), SetCount(0), Answer_array(nullptr), Return_value(nullptr)
 {
 }
 
 Referee::~Referee()
 {
-    delete Answer_array;
-    if(Return_value == nullptr)
+    if(Answer_array != nullptr){
+        delete Answer_array;
+    }
+    if(Return_value != nullptr){
         delete Return_value;
+    }
 }
 
-bool Referee::Start(int Difficulty)
+bool Referee::PLAY_Solo(int Difficulty)
 {
-    SetDifficulty(Difficulty);      // Set the Answer array.
-    Array Guess_array(Difficulty);  // User's array.
+    SetCount = 0;
+    SetDifficulty(Difficulty);      // Set the Answer array. (dynamic allocated)
+    Array Guess_array(Difficulty);  // User's array. 
     bool result_flag = false;       // win <- true, lose <- false
 
     while(SetCount != 9){
-    // 1 loop == 1 set of the game
+    // 1 loop = 1 set of the game
 
         string guess;
         while(true){
             cout<<" >> Input your guess("<<Difficulty<<" numbers). 'help' to view help."<<endl;
+            guess.clear(); // for "fflush"
             cout<<" >> "; cin >> guess;
-            if(guess.size() > Difficulty){
-                cout<<" >> error : So many."<<endl;
-            }
-            else if(guess == "help"){
+            if(guess == "help"){
                 ViewHelp();
             }
             else if(guess == "stop"){
@@ -37,9 +39,13 @@ bool Referee::Start(int Difficulty)
             else if(guess == "exit"){
                 exit(1);
             }
+            else if(guess.size() != Difficulty){
+                cout<<" >> Please enter the correct number of your guess."<<endl;
+            }
             else{
                 if(Guess_array.SetArray(guess)){ // return false << the element was overlapping
                     break;
+                    // if the "guess" was correct, then break and go to next step; check Answer_array
                 }
             }
         }
@@ -58,20 +64,51 @@ bool Referee::Start(int Difficulty)
             Guess_array.clear();
         }
         SetCount++;
+        cout<<endl;
         // one set is over
     }
 
     return result_flag;
 }
 
+bool Referee::PLAY_PVP(int difficulty)
+{
+    SetCount = 0;
+    SetDifficulty(Difficulty);      // Set the Answer array.
+    Array Guess_array(Difficulty);  // User's array.
+    bool result_flag = false;       // win <- true, lose <- false
+
+
+    /* */
+
+    return result_flag;
+}
+
+bool Referee::PLAY_Computer(int difficulty)
+{
+    SetCount = 0;
+    SetDifficulty(Difficulty);      // Set the Answer array.
+    Array Guess_array(Difficulty);  // User's array.
+    bool result_flag = false;       // win <- true, lose <- false
+
+
+    /* */
+
+    return result_flag;
+}
+
 void Referee::SetDifficulty(int difficulty)
 {
+    if(Answer_array != nullptr){ // delete previous Answer_array
+        delete Answer_array;
+    }
     Difficulty = difficulty;
     Answer_array = new Answer(Difficulty);
 }
 
 void Referee::ViewHelp() const
-{   cout<<endl;
+{   
+    cout<<endl;
     cout<<" >> 'stop' - Stop this game and go to main menu."<<endl;
     cout<<" >> 'exit' - Program exit."<<endl;
     cout<<endl;

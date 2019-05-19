@@ -44,13 +44,16 @@ int PresentInfo::Ball() const
     return Number[2];
 }
 
-Array::Array(int Difficulty) : ElemNum(Difficulty)
+Array::Array(int Difficulty) : ElemNum(Difficulty), Info(nullptr)
 {
+
 }
 
 Array::~Array()
 {
-
+    if(Info != nullptr){
+        delete Info;
+    }
 }
 
 int& Array::operator[](int idx)
@@ -62,8 +65,12 @@ int& Array::operator[](int idx)
     return arr[idx];
 }
 
-PresentInfo* Array::Check(Array& Present) const
+PresentInfo* Array::Check(Array& Present)
 {
+    if(Info != nullptr){ // delete previous PresentInfo
+        delete Info;
+    }
+
     int strike_num = 0;
     int ball_num = 0;
     
@@ -83,12 +90,13 @@ PresentInfo* Array::Check(Array& Present) const
             }
         }
     }
-    PresentInfo* info = new PresentInfo(strike_num, ball_num); // 이거 어디서 delete?
-    return info;
+    Info = new PresentInfo(strike_num, ball_num);
+    return Info;
 }
 
 bool Array::SetArray(string& Numbers)
 {
+    arr.clear();
     for(int i=0; i<ElemNum; i++){
         #ifdef DEBUG_MODE
         cout<<" # Input string["<<i<<"] : "<<Numbers[i]<<endl;
@@ -116,7 +124,7 @@ bool Array::push_back(int elem)
     else{
         for(int i=0; i<arr.size(); i++){
             if(arr[i] == elem){
-                cout<<" >> error : Two or more same number exist, or '"<<ElemNum<<"' numbers are excepted."<<endl;
+                cout<<" >> Two or more same number exist. Please enter again."<<endl;
                 return false;
             }
         }
