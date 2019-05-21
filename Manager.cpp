@@ -47,10 +47,10 @@ void Manager::Play(int GameMode)
     }
     else if(GameMode == 2){
         if(Game.PLAY_PVP()){
-            cout<<" >> Player 1 won!"<<endl;
+            
         }
         else{
-            cout<<" >> Player 2 won!"<<endl;
+            cout<<" >> Draw!"<<endl;
         }
     }
     else if(GameMode == 3){

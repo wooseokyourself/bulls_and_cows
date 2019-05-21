@@ -49,6 +49,11 @@ Array::Array(int Difficulty) : ElemNum(Difficulty), Info(nullptr)
 
 }
 
+Array::Array(string num) : ElemNum(size(num)), Info(nullptr)
+{
+	SetArray(num);
+}
+
 Array::~Array()
 {
     if(Info != nullptr){
@@ -75,7 +80,7 @@ PresentInfo* Array::Check(Array& Present)
     int ball_num = 0;
     
     for(int i=0; i<ElemNum; i++){
-        for(int j=i; j<ElemNum; j++){
+        for(int j=0; j<ElemNum; j++){
             if(i==j && arr[i] == Present[i]){
                 #ifdef DEBUG_MODE
                 cout<<" # Strike ++!"<<endl;
@@ -135,21 +140,27 @@ bool Array::push_back(int elem)
 
 Answer::Answer(int Difficulty) : Array(Difficulty)
 {
-    SetRandomNumber();
-    if(ElemNum == 3){
-        cout<<" >> EASY MODE"<<endl;
-    }
-    else if(ElemNum == 4){
-        cout<<" >> NORMAL MODE"<<endl;
-    }
-    else if(ElemNum == 5){
-        cout<<" >> HARD MODE"<<endl;
-    }
-    else{
-        cout<<"Difficulty : "<<Difficulty<<endl;
-        cout<<"SYSTEM : Invalid Difficulty. Program exit."<<endl;
-        exit(1);
-    }
+	SetRandomNumber();
+	if (ElemNum == 3) {
+		cout << " >> EASY MODE" << endl;
+	}
+	else if (ElemNum == 4) {
+		cout << " >> NORMAL MODE" << endl;
+	}
+	else if (ElemNum == 5) {
+		cout << " >> HARD MODE" << endl;
+	}
+	else {
+		cout << "Difficulty : " << Difficulty << endl;
+		cout << "SYSTEM : Invalid Difficulty. Program exit." << endl;
+		exit(1);
+	}
+}
+
+
+Answer::Answer(string num) : Array(num)
+{
+	SetNumbers(num);
 }
 
 void Answer::SetRandomNumber()
@@ -177,6 +188,33 @@ void Answer::SetRandomNumber()
     }
 }
 
+void Answer::SetNumbers(string Num)
+{
+	vector<int*> MemoryCollector;
+	const int lowest = 0;
+	const int highest = 9;
+	const int range = (highest - lowest) + 1;
+
+	int i = 0;
+
+	while (arr.size() != ElemNum) {
+		int* random = new int(Num[i] - '0');
+		MemoryCollector.push_back(random);
+		this->push_back(*random);
+		i++;
+	}
+
+#ifdef DEBUG_MODE
+	for (int i = 0; i<arr.size(); i++) {
+		cout << "answer : " << arr[i] << endl;
+	}
+#endif
+
+	while (MemoryCollector.size() != 0) {
+		delete MemoryCollector.back();
+		MemoryCollector.pop_back();
+	}
+}
 bool Answer::push_back(int randomNum)
 {
     if(arr.size() == 0){

@@ -24,6 +24,7 @@ class Array
 {
 public:
     Array(int Difficulty);
+	Array(string num);
     ~Array();
     int& operator[](int idx);
     PresentInfo* Check(Array& Present);
@@ -50,8 +51,12 @@ class Answer : public Array
 {
 public:
     Answer(int Difficulty);
+	Answer(string num);
+	void SetNumbers(string Num);
+
 protected:
     void SetRandomNumber();
+	
     virtual bool push_back(int randomNum); // for not inserting overlapped value of the random numbers
 };
 
