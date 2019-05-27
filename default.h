@@ -2,8 +2,10 @@
 #define __DEFAULT_H_
 
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <ctime>
+#include <cmath>
 #include <cstdlib>
 #include <string>
 

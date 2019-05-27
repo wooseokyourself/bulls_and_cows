@@ -1,0 +1,55 @@
+Program starts : 2019-05-27.19:34:55
+
+========SOLOPLAY========
+ >> USER : 123 --> 1 STRIKE, 0 BALL
+ >> USER : 123 --> 1 STRIKE, 0 BALL
+ >> USER : 123 --> 1 STRIKE, 0 BALL
+ >> USER : 123 --> 1 STRIKE, 0 BALL
+ >> USER : 123 --> 1 STRIKE, 0 BALL
+ >> USER : 123 --> 1 STRIKE, 0 BALL
+ >> USER : 123 --> 1 STRIKE, 0 BALL
+ >> USER : 123 --> 1 STRIKE, 0 BALL
+ >> USER : 123 --> 1 STRIKE, 0 BALL
+========SOLOEND=========
+
+
+========PVP PLAY========
+ >> Player1's turn  >> USER : 123 --> 0 STRIKE, 1 BALL
+ >> Player2's turn  >> USER : 123 --> 0 STRIKE, 1 BALL
+ >> Player1's turn  >> USER : 123 --> 0 STRIKE, 1 BALL
+ >> Player2's turn  >> USER : 123 --> 0 STRIKE, 1 BALL
+ >> Player1's turn  >> USER : 345 --> 0 STRIKE, 0 BALL
+ >> Player2's turn  >> USER : 345 --> 0 STRIKE, 0 BALL
+ >> Player1's turn  >> USER : 345 --> 0 STRIKE, 0 BALL
+ >> Player2's turn  >> USER : 345 --> 0 STRIKE, 0 BALL
+ >> Player1's turn  >> USER : 345 --> 0 STRIKE, 0 BALL
+ >> Player2's turn  >> USER : 345 --> 0 STRIKE, 0 BALL
+ >> Player1's turn  >> USER : 234 --> 1 STRIKE, 0 BALL
+ >> Player2's turn  >> USER : 234 --> 1 STRIKE, 0 BALL
+ >> Player1's turn  >> USER : 123 --> 0 STRIKE, 1 BALL
+ >> Player2's turn  >> USER : 123 --> 0 STRIKE, 0 BALL
+ >> Player1's turn  >> USER : 345 --> 0 STRIKE, 0 BALL
+ >> Player2's turn  >> USER : 345 --> 0 STRIKE, 0 BALL
+========PVP STOP========
+
+
+========A I PLAY========
+ >> USER : 123 --> 1 STRIKE, 1 BALL
+ >> A I  : 102 --> 2 STRIKE, 0 BALL
+ >> USER : 345 --> 0 STRIKE, 1 BALL
+ >> A I  : 103 --> 1 STRIKE, 0 BALL
+ >> USER : 345 --> 0 STRIKE, 1 BALL
+ >> A I  : 142 --> 2 STRIKE, 0 BALL
+ >> USER : 234 --> 0 STRIKE, 1 BALL
+ >> A I  : 152 --> 3 STRIKE, 0 BALL
+========A I END=========
+
+Program starts : 2019-05-27.19:35:28
+
+========SOLOPLAY========
+ >> USER : 12346 --> 0 STRIKE, 3 BALL
+ >> USER : 23546 --> 0 STRIKE, 2 BALL
+ >> USER : 12345 --> 0 STRIKE, 2 BALL
+ >> USER : 45678 --> 0 STRIKE, 3 BALL
+ >> USER : 34567 --> 0 STRIKE, 2 BALL
+========SOLOSTOP========

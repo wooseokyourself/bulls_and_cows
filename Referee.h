@@ -3,6 +3,7 @@
 
 #include "default.h"
 #include "Array.h"
+#include "FileManager.h"
 
 class Referee
 {
@@ -22,6 +23,7 @@ private:
     int SetCount; // max = 9;
     PresentInfo* Return_value; // will get copied address; no need to delete it
     Answer* Answer_array; // will be dynamic allocated
+    FileManager file;
 };
 
 #endif 

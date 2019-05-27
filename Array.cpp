@@ -49,8 +49,9 @@ Array::Array(int Difficulty) : ElemNum(Difficulty), Info(nullptr)
 
 }
 
-Array::Array(string num) : ElemNum(size(num)), Info(nullptr)
+Array::Array(string num) : Info(nullptr)
 {
+    ElemNum = num.size();
 	SetArray(num);
 }
 

@@ -26,6 +26,7 @@ bool Isoverlapped(string temp) {
 
 bool Referee::PLAY_Solo()
 {
+    file.print("\n========SOLOPLAY========\n");
 	SetCount = 0;
 	Array Guess_array(Difficulty);  // User's array.
 	bool result_flag = false;       // win <- true, lose <- false
@@ -43,10 +44,12 @@ bool Referee::PLAY_Solo()
 			}
 			else if (guess == "stop") {
 				cout << endl;
+                file.print("========SOLOSTOP========\n\n");
 				return false;
 			}
 			else if (guess == "exit") {
-				exit(1);
+                file.print("========INPUT 'EXIT'=========\n\n");
+                exit(1);
 			}
 			else if (guess.size() != Difficulty) {
 				cout << " >> Please enter the correct number of your guess." << endl;
@@ -60,6 +63,7 @@ bool Referee::PLAY_Solo()
 		}
 
 		Return_value = Answer_array->Check(Guess_array);
+        file.print_user(guess, Return_value->Strike(), Return_value->Ball());
 		if (Return_value->isOut()) {
 			cout << " >> OUT. " << endl;
 		}
@@ -76,12 +80,13 @@ bool Referee::PLAY_Solo()
 		cout << endl;
 		// one set is over
 	}
-
+    file.print("========SOLOEND=========\n\n");
 	return result_flag;
 }
 
 bool Referee::PLAY_PVP()
 {
+    file.print("\n========PVP PLAY========\n");
 	SetCount = 0;
 	Array Guess_array(Difficulty);  // User's array.
 	Array Guess_array2(Difficulty); //User2's array.
@@ -102,9 +107,11 @@ bool Referee::PLAY_PVP()
 			}
 			else if (guess == "stop") {
 				cout << endl;
+                file.print("========PVP STOP========\n\n");
 				return false;
 			}
 			else if (guess == "exit") {
+                file.print("========INPUT 'EXIT'=========\n\n");
 				exit(1);
 			}
 			else if (guess.size() != Difficulty) {
@@ -119,6 +126,8 @@ bool Referee::PLAY_PVP()
 		}
 
 		Return_value = Answer_array->Check(Guess_array);
+        file.print(" >> Player1's turn ");
+        file.print_user(guess, Return_value->Strike(), Return_value->Ball()); // fprint user1
 		if (Return_value->isOut()) {
 			cout << " >> OUT. " << endl;
 		}
@@ -135,6 +144,7 @@ bool Referee::PLAY_PVP()
 		SetCount++;
 		cout << endl;
 
+
 		string guess2;
 		while (true) {
 			cout << "Player2's turn" << endl;
@@ -146,10 +156,12 @@ bool Referee::PLAY_PVP()
 			}
 			else if (guess2 == "stop") {
 				cout << endl;
+                file.print("========PVP STOP========\n\n");
 				return false;
 			}
 			else if (guess2 == "exit") {
-				exit(1);
+				file.print("========INPUT 'EXIT'=========\n\n");
+                exit(1);
 			}
 			else if (guess2.size() != Difficulty) {
 				cout << " >> Please enter the correct number of your guess." << endl;
@@ -163,6 +175,8 @@ bool Referee::PLAY_PVP()
 		}
 
 		Return_value = Answer_array->Check(Guess_array2);
+        file.print(" >> Player2's turn ");
+        file.print_user(guess, Return_value->Strike(), Return_value->Ball()); // fprint user2
 		if (Return_value->isOut()) {
 			cout << " >> OUT. " << endl;
 		}
@@ -177,15 +191,16 @@ bool Referee::PLAY_PVP()
 			Guess_array2.clear();
 		}
 		SetCount++;
-		cout << endl;
-		// one set is over
+		cout << endl; // one set is over
 	}
 
+    file.print("========PVP END=========\n\n");
 	return result_flag;
 }
 
 bool Referee::PLAY_Computer()
 {
+    file.print("\n========A I PLAY========\n");
 	SetCount = 0;
 	Array Guess_array(Difficulty);  // User's array.
 	Array Guess_array2(Difficulty); //computer's array.
@@ -199,7 +214,7 @@ bool Referee::PLAY_Computer()
 
 		string guess;
 		while (true) {
-			cout << "Player1's turn" << endl;
+			cout << "Player's turn" << endl;
 			cout << " >> Input your guess(" << Difficulty << " numbers). 'help' to view help." << endl;
 			guess.clear(); // for "fflush"
 			cout << " >> "; cin >> guess;
@@ -208,9 +223,11 @@ bool Referee::PLAY_Computer()
 			}
 			else if (guess == "stop") {
 				cout << endl;
+                file.print("========A I STOP========\n\n");
 				return false;
 			}
 			else if (guess == "exit") {
+                file.print("========INPUT 'EXIT'=========\n\n");
 				exit(1);
 			}
 			else if (guess.size() != Difficulty) {
@@ -225,6 +242,7 @@ bool Referee::PLAY_Computer()
 		}
 
 		Return_value = Answer_array->Check(Guess_array);
+        file.print_user(guess, Return_value->Strike(), Return_value->Ball()); // fprint user
 		if (Return_value->isOut()) {
 			cout << " >> OUT. " << endl;
 		}
@@ -240,6 +258,8 @@ bool Referee::PLAY_Computer()
 		}
 		SetCount++;
 		cout << endl;
+
+
 
 		int num = pow(10, Difficulty);
 		int i;
@@ -283,6 +303,7 @@ bool Referee::PLAY_Computer()
 
 			}
 		}
+        file.print_ai(guess2, Return_value->Strike(), Return_value->Ball()); // fprint computer
 		if (Return_value->isOut()) {
 			cout << " >> OUT. " << endl;
 		}
@@ -290,6 +311,7 @@ bool Referee::PLAY_Computer()
 			if (Return_value->Strike() == Difficulty) { // computer win
 				result_flag = false;
 				cout << " >> Computer won!" << endl;
+                delete Answer_array2;
 				break;
 			}
 			cout << " >> " << Return_value->Strike() << " STRIKE." << endl;
@@ -297,12 +319,14 @@ bool Referee::PLAY_Computer()
 			Guess_array2.clear();
 		}
 		SetCount++;
-		cout << endl;
-		// one set is over
+		cout << endl; // one set is over
+        if(Answer_array2 != nullptr)
+            delete Answer_array2;
 	}
+    
 
+    file.print("========A I END=========\n\n");
 	return result_flag;
-
 }
 
 void Referee::MakeAnswerArray(int _difficulty)
